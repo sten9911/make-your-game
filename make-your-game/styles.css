@@ -1,0 +1,182 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+  --hue: 300;
+  --saturation: 50%;
+  --foreground-color: hsl(var(--hue), var(--saturation), 75%);
+  --background-color: hsl(var(--hue), var(--saturation), 20%);
+  --doubleBlock-color: hsl(var(--hue), var(--saturation), 90%);
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  overflow: hidden;
+  font-family: Helvetica, Sans-Serif;
+}
+
+.paddle {
+  --position: 50;
+
+  position: absolute;
+  background-color: var(--foreground-color);
+  left: calc(var(--position) * 1vw);
+  transform: translateX(-50%);
+  width: 15vh;
+  height: 1vh;
+}
+
+.paddle {
+  bottom: 3vh;
+}
+
+.ball {
+  --x: 50;
+  --y: 92.5;
+
+  position: absolute;
+  background-color: var(--foreground-color);
+  left: calc(var(--x) * 1vw);
+  top: calc(var(--y) * 1vh);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5vh;
+  height: 2.5vh;
+}
+.ball2 {
+  --x: 50;
+  --y: 92.5;
+
+  position: absolute;
+  background-color: var(--foreground-color);
+  left: calc(var(--x) * 1vw);
+  top: calc(var(--y) * 1vh);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5vh;
+  height: 2.5vh;
+}
+
+.score {
+  position: fixed;
+  left: 5px;
+  top: 5px;
+  font-weight: bold;
+  font-size: 5vh;
+  color: var(--foreground-color);
+  padding: 0 2vh;
+  margin: 1vh 0;
+  opacity: .5;
+}
+
+.lives {
+  position: fixed;
+  left: 75px;
+  top: 5px;
+  font-weight: bold;
+  font-size: 5vh;
+  margin: 1vh 0;
+  opacity: .7;
+}
+.lives > * {
+  margin-top: 1vh;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: var(--foreground-color);
+  opacity: 0.7;
+}
+
+.fps {
+  position: fixed;
+  top: 5px;
+  right: 15px;
+  color: var(--foreground-color);
+}
+.fps::after {
+  content: " - FPS";
+}
+
+/* Game over */
+.game-over {
+  font-size: 40px;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: none;
+  color: var(--foreground-color);
+}
+#message {
+  margin-bottom: 2.5vh;
+}
+/* Pause menu */
+.pause-menu {
+  font-size: 40px;
+  position: fixed;
+  top: 60vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: none;
+  color: var(--foreground-color);
+}
+.pause-menu > * {
+  margin-bottom: 2.5vh;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Brick grid */
+.brick-grid {
+  margin: auto;
+  margin-top: 15vh; 
+  width: 75vw;
+  height: 25vh;
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."; 
+}
+.brick-grid > .brick {
+  height: 100%;
+  width: 100%;
+  border: 3px solid var(--background-color);
+  background-color: var(--foreground-color);
+}
+.brick-grid > .doubleBrick {
+  height: 100%;
+  width: 100%;
+  border: 3px solid var(--background-color);
+  background-color: var(--doubleBlock-color);
+}
+
+/* Tooltip for How to Play */
+.tooltip {
+  visibility: hidden;
+  width: 150%;
+  font-size: 12px;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  margin-left: -60px;
+
+}
+
+.controls:hover .tooltip {
+  visibility: visible;
+}
